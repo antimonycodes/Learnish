@@ -106,7 +106,7 @@ export async function POST(req: any) {
 
       console.log(result);
 
-      if (result?.length >= 5) {
+      if (result?.length >= 1) {
         return NextResponse.json(
           { error: "Limit exceeded, subscribe to premium" },
           { status: 500 }
