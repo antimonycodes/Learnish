@@ -54,7 +54,7 @@ const sidebarConfig = [
 ];
 
 export function AppSidebar() {
-  const [completedToday, setCompletedToday] = useState(false);
+  const [completedoday, setCompletedToday] = useState(false);
   const [streakData, setStreakData] = useState({
     currentStreak: 0,
     longestStreak: 0,
