@@ -1,18 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import {
-  ChevronDown,
-  ChevronRight,
-  Play,
-  Check,
-  ArrowRight,
-  Clock,
-  Users,
-  Star,
-  BookOpen,
-  CheckCircle,
-  Circle,
-  X,
-} from "lucide-react";
+import { Check, X } from "lucide-react";
 import {
   Accordion,
   AccordionContent,
@@ -30,7 +17,7 @@ const CourseSidebar = ({ courseInfo, sidebarOpen, onCloseSidebar }: any) => {
   const enrolcourse = courseInfo?.enrolcourse;
   const courseContent =
     courseInfo?.courses?.courseContent || courseInfo?.courseContent;
-  let completedChapters = enrolcourse?.completedChapters ?? [];
+  const completedChapters = enrolcourse?.completedChapters ?? [];
 
   const isChapterCompleted = (chapterIndex: number) => {
     return completedChapters.includes(chapterIndex);
@@ -107,7 +94,7 @@ const CourseSidebar = ({ courseInfo, sidebarOpen, onCloseSidebar }: any) => {
         {/* Content */}
         <div className="p-6">
           <Accordion type="single" collapsible className="space-y-0">
-            {courseContent?.map((chapter, chapterIndex) => {
+            {courseContent?.map((chapter: any, chapterIndex: number) => {
               const chapterProgress = getChapterProgress(chapter, chapterIndex);
               const isCurrentChapter = selectedChapterIndex === chapterIndex;
               const isChapterComplete = chapterProgress.isCompleted;
@@ -174,48 +161,50 @@ const CourseSidebar = ({ courseInfo, sidebarOpen, onCloseSidebar }: any) => {
 
                   <AccordionContent className="pb-4 pt-2">
                     <div className="space-y-2 ml-9">
-                      {chapter?.courseData?.topics?.map((topic, topicIndex) => {
-                        const isTopicCompleted = isChapterComplete;
+                      {chapter?.courseData?.topics?.map(
+                        (topic: any, topicIndex: number) => {
+                          const isTopicCompleted = isChapterComplete;
 
-                        return (
-                          <div
-                            key={topicIndex}
-                            className={`relative cursor-pointer group transition-all duration-200 ${
-                              isTopicCompleted
-                                ? "bg-green-50 border-l-2 border-green-500"
-                                : "hover:bg-gray-50 border-l-2 border-transparent"
-                            } rounded-r-md`}
-                          >
-                            <div className="flex items-center gap-3 py-2.5 px-4">
-                              {/* Topic completion indicator */}
-                              <div
-                                className={`w-4 h-4 rounded-full border flex items-center justify-center flex-shrink-0 ${
-                                  isTopicCompleted
-                                    ? "bg-green-500 border-green-500"
-                                    : "border-gray-300 bg-white"
-                                }`}
-                              >
-                                {isTopicCompleted && (
-                                  <Check className="w-2.5 h-2.5 text-white" />
-                                )}
-                              </div>
-
-                              {/* Topic title */}
-                              <div className="flex-1 min-w-0">
+                          return (
+                            <div
+                              key={topicIndex}
+                              className={`relative cursor-pointer group transition-all duration-200 ${
+                                isTopicCompleted
+                                  ? "bg-green-50 border-l-2 border-green-500"
+                                  : "hover:bg-gray-50 border-l-2 border-transparent"
+                              } rounded-r-md`}
+                            >
+                              <div className="flex items-center gap-3 py-2.5 px-4">
+                                {/* Topic completion indicator */}
                                 <div
-                                  className={`text-sm font-medium truncate ${
+                                  className={`w-4 h-4 rounded-full border flex items-center justify-center flex-shrink-0 ${
                                     isTopicCompleted
-                                      ? "text-green-700"
-                                      : "text-gray-700"
+                                      ? "bg-green-500 border-green-500"
+                                      : "border-gray-300 bg-white"
                                   }`}
                                 >
-                                  {topic.topic}
+                                  {isTopicCompleted && (
+                                    <Check className="w-2.5 h-2.5 text-white" />
+                                  )}
+                                </div>
+
+                                {/* Topic title */}
+                                <div className="flex-1 min-w-0">
+                                  <div
+                                    className={`text-sm font-medium truncate ${
+                                      isTopicCompleted
+                                        ? "text-green-700"
+                                        : "text-gray-700"
+                                    }`}
+                                  >
+                                    {topic.topic}
+                                  </div>
                                 </div>
                               </div>
                             </div>
-                          </div>
-                        );
-                      })}
+                          );
+                        }
+                      )}
                     </div>
                   </AccordionContent>
                 </AccordionItem>

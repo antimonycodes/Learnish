@@ -1,5 +1,4 @@
 import { SelectedChapterContext } from "@/app/context/SelectedChapterContext";
-import { Course } from "@/config/schema";
 import axios from "axios";
 import {
   ArrowRight,
@@ -15,7 +14,6 @@ import {
 } from "lucide-react";
 import { useParams } from "next/navigation";
 import { useContext, useState, useEffect } from "react";
-import YouTube from "react-youtube";
 import { toast } from "sonner";
 
 interface CourseContentProps {
@@ -40,14 +38,14 @@ export const CourseContentArea = ({
   const [completedToday, setCompletedToday] = useState(false);
 
   const { courseId } = useParams();
-  const { course, enrolcourse } = courseInfo ?? "";
+  const { enrolcourse } = courseInfo ?? "";
 
   const courseContent =
     courseInfo?.courses?.courseContent || courseInfo?.courseContent;
   const videoData = courseContent?.[selectedChapterIndex]?.youtubeVideo;
   const topics = courseContent?.[selectedChapterIndex]?.courseData?.topics;
 
-  let completedChapter = enrolcourse?.completedChapters ?? [];
+  const completedChapter = enrolcourse?.completedChapters ?? [];
   console.log("comp", completedChapter);
 
   const completedChapters = enrolcourse?.completedChapters ?? [];
@@ -77,6 +75,7 @@ export const CourseContentArea = ({
       setStreakData(response.data);
       setCompletedToday(response.data.completedToday || false);
     } catch (error) {
+      console.log(error);
       console.log("Failed to fetch streak data");
     }
   };
