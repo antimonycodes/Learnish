@@ -256,8 +256,8 @@ const Courses = ({ full = false }: any) => {
               >
                 <div className="relative">
                   <Image
-                    height={40}
-                    width={40}
+                    height={160}
+                    width={400}
                     src={course.bannerImageUrl || ""}
                     alt={course.courseJson.course.name}
                     className="w-full h-40 object-cover"
