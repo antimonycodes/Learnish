@@ -29,15 +29,7 @@ import { useState, useEffect } from "react";
 
 const testimonials = [
   {
-    name: "Dr. Sarah Chen",
-    role: "ML Engineer at Google",
-    content:
-      "I've used every learning platform out there. This AI actually understands how concepts build on each other. My team now uses it for onboarding.",
-    rating: 5,
-    courses: "Completed: Advanced Machine Learning, System Design",
-  },
-  {
-    name: "Marcus Rodriguez",
+    name: "Ayo Akinwunmi",
     role: "Frontend Developer",
     content:
       "Went from zero to landing my first dev job in 4 months. The personalized roadmap was like having a senior developer mentor me 24/7.",
@@ -45,7 +37,7 @@ const testimonials = [
     courses: "Completed: React Mastery, JavaScript Fundamentals",
   },
   {
-    name: "Emily Watson",
+    name: "JayDesigns",
     role: "Product Designer",
     content:
       "The course structure is incredible. It identified gaps in my knowledge I didn't even know existed and filled them systematically.",
@@ -53,10 +45,10 @@ const testimonials = [
     courses: "Completed: UX Research, Design Systems",
   },
   {
-    name: "James Park",
+    name: "Dave",
     role: "Startup Founder",
     content:
-      "This platform taught me digital marketing faster than my MBA program. The AI knew exactly what I needed to learn for my specific business model.",
+      "This platform taught me digital marketing . The AI knew exactly what I needed to learn for my specific business model.",
     rating: 5,
     courses: "Completed: Growth Marketing, Analytics",
   },
@@ -126,56 +118,61 @@ export default function Home() {
     {
       icon: Code,
       name: "Programming",
-      count: "2,450",
+      count: "unlimited",
       color: "text-orange-500",
     },
-    { icon: Palette, name: "Design", count: "1,230", color: "text-orange-500" },
+    {
+      icon: Palette,
+      name: "Design",
+      count: "unlimited",
+      color: "text-orange-500",
+    },
     {
       icon: TrendingUp,
       name: "Business",
-      count: "1,890",
+      count: "unlimited",
       color: "text-orange-500",
     },
     {
       icon: Music,
       name: "Creative Arts",
-      count: "980",
+      count: "unlimited",
       color: "text-orange-500",
     },
     {
       icon: Calculator,
       name: "Mathematics",
-      count: "1,120",
+      count: "unlimited",
       color: "text-orange-500",
     },
     {
       icon: Languages,
       name: "Languages",
-      count: "890",
+      count: "unlimited",
       color: "text-orange-500",
     },
     {
       icon: Camera,
       name: "Photography",
-      count: "670",
+      count: "unlimited",
       color: "text-orange-500",
     },
     {
       icon: Globe,
       name: "Marketing",
-      count: "1,340",
+      count: "unlimiteds",
       color: "text-orange-500",
     },
   ];
 
   const stats = [
     {
-      number: "127K+",
+      number: "10+",
       label: "Active Learners",
       description: "Growing by 2K+ monthly",
     },
     {
-      number: "89K+",
+      number: "10+",
       label: "Courses Generated",
       description: "Across 200+ topics",
     },
@@ -187,7 +184,7 @@ export default function Home() {
     {
       number: "4.9",
       label: "Student Rating",
-      description: "From 12K+ reviews",
+      description: " reviews",
     },
   ];
 
@@ -279,14 +276,14 @@ export default function Home() {
               </span>
             </div> */}
 
-            <h1 className="text-7xl md:text-9xl font-bold mb-8 leading-tight tracking-tight">
+            <h1 className="text-5xl md:text-7xl font-bold mb-8 leading-tight tracking-tight">
               Learn
               <span className="text-orange-500"> Anything</span>
               <br />
               <span className="text-white/60">Systematically</span>
             </h1>
 
-            <p className="text-xl md:text-2xl text-white/70 mb-12 max-w-2xl mx-auto leading-relaxed">
+            <p className="text-md md:text-lg text-white/70 mb-12 max-w-2xl mx-auto leading-relaxed">
               Stop jumping between random tutorials. Our AI creates structured
               learning paths that actually make sense—with the right content, in
               the right order, at the right pace.
@@ -330,9 +327,9 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
+        {/* <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
           <ChevronDown className="w-6 h-6 text-white/40" />
-        </div>
+        </div> */}
       </section>
 
       {/* Course Categories */}
@@ -520,11 +517,11 @@ export default function Home() {
 
               <ul className="space-y-4 mb-8">
                 {[
-                  "3 complete AI courses",
-                  "Basic progress tracking",
+                  "2 complete AI courses",
+                  // "Basic progress tracking",
                   "Community access",
                   "Standard video quality",
-                  "Email support",
+                  // "Email support",
                 ].map((feature, index) => (
                   <li key={index} className="flex items-center text-white/80">
                     <Check className="w-5 h-5 text-orange-500 mr-3" />
@@ -549,7 +546,7 @@ export default function Home() {
               <div className="text-center mb-8 mt-4">
                 <h3 className="text-2xl font-bold mb-2">Premium</h3>
                 <div className="text-5xl font-bold mb-2">
-                  $19
+                  $8
                   <span className="text-lg text-white/60 font-normal">
                     /month
                   </span>
@@ -566,7 +563,7 @@ export default function Home() {
                   "Downloadable resources",
                   "Custom learning paths",
                   "Achievement certificates",
-                  "Ad-free experience",
+                  // "Ad-free experience",
                 ].map((feature, index) => (
                   <li key={index} className="flex items-center text-white/90">
                     <Check className="w-5 h-5 text-orange-500 mr-3" />
@@ -575,16 +572,16 @@ export default function Home() {
                 ))}
               </ul>
 
-              <Button className="w-full bg-orange-500 hover:bg-orange-600 text-black py-4 text-lg rounded-full font-semibold transition-all duration-300">
+              {/* <Button className="w-full bg-orange-500 hover:bg-orange-600 text-black py-4 text-lg rounded-full font-semibold transition-all duration-300">
                 Upgrade to Premium
-              </Button>
+              </Button> */}
 
-              <div className="text-center mt-6">
+              {/* <div className="text-center mt-6">
                 <p className="text-sm text-white/60">
                   <Shield className="w-4 h-4 inline mr-1" />
                   30-day money-back guarantee
                 </p>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>
@@ -660,12 +657,12 @@ export default function Home() {
             <span className="text-orange-500">Random Tutorials</span>
           </h2>
           <p className="text-xl text-white/70 mb-12 leading-relaxed">
-            Join over 127,000 learners who&apos;ve discovered the power of
-            structured, AI-driven education. Your future self will thank you.
+            Join learners who&apos;ve discovered the power of structured,
+            AI-driven education. Your future self will thank you.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-6 justify-center">
-            <Button className="bg-orange-500 hover:bg-orange-600 text-black px-12 py-6 text-xl rounded-full font-semibold transition-all duration-300 hover:scale-105">
+            <Button className="bg-orange-500 hover:bg-orange-600 text-black px-12 py-6 text-xl rounded-md font-semibold transition-all duration-300 hover:scale-105">
               Start Your Journey
               <ArrowRight className="ml-3 w-6 h-6" />
             </Button>
@@ -690,12 +687,13 @@ export default function Home() {
 
       {/* Footer */}
       <footer className="border-t border-white/10 py-12">
-        <div className="max-w-7xl mx-auto px-6 text-center">
-          <div className="flex items-center justify-center space-x-3 mb-6">
-            <div className="w-10 h-10 bg-white rounded-lg flex items-center justify-center">
-              <div className="w-6 h-6 bg-orange-500 rounded transform rotate-45"></div>
-            </div>
-            <span className="text-2xl font-bold">CourseAI</span>
+        <div className="max-w-7xl mx-auto px-6 text-center flex flex-col items-center">
+          <div className="relative flex items-center space-x-3">
+            <Image src="/logo.svg" width={40} height={40} alt="logo" />
+            <span className="text-2xl font-bold relative">
+              Learn
+              <span className="relative inline-block">ish</span>
+            </span>
           </div>
           <p className="text-white/40">
             © 2025 CourseAI. Making learning systematic, one course at a time.
