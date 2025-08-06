@@ -14,17 +14,7 @@ import {
 } from "@/components/ui/sidebar";
 import AddNewCourseDialog from "@/shared/AddNewCourseDialog";
 import axios from "axios";
-import {
-  BookOpen,
-  Home,
-  Search,
-  User,
-  BotIcon,
-  Compass,
-  Currency,
-  LayoutDashboard,
-  TrendingUp,
-} from "lucide-react";
+import { BookOpen, Home, Search, User, BotIcon, Currency } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -79,6 +69,7 @@ export function AppSidebar() {
       setStreakData(response.data);
       setCompletedToday(response.data.completedToday || false);
     } catch (error) {
+      console.log(error);
       console.log("Failed to fetch streak data");
     }
   };
@@ -136,7 +127,9 @@ export function AppSidebar() {
                   {streakData.currentStreak} Day Streak!
                 </p>
                 <p className="text-xs text-slate-400 mt-1">
-                  Keep it up! You're on fire 🔥
+                  {streakData.currentStreak >= 1
+                    ? "  Keep it up! You're on fire 🔥"
+                    : ""}
                 </p>
               </div>
             </div>

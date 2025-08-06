@@ -1,20 +1,15 @@
 "use client";
 
 import axios from "axios";
-import {
-  BookOpen,
-  ChevronRight,
-  Loader2,
-  PlayCircle,
-  Plus,
-} from "lucide-react";
+import { ChevronRight, Loader2, PlayCircle } from "lucide-react";
 import React, { useEffect, useState } from "react";
 import { Course } from "../_components/Courses";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 
 const Explore = () => {
-  const [courses, setCourse] = useState();
+  // const [courses, setCourse] = useState();
   const [courseList, setCourseList] = useState<Course[]>([]);
   const [enrollingCourses, setEnrollingCourses] = useState<any>();
   const [loading, setLoading] = useState(false);
@@ -121,7 +116,7 @@ const Explore = () => {
               className="flex flex-col justify-between bg-card rounded-xl shadow-sm border border-border overflow-hidden hover:shadow-md transition-all duration-200 hover:-translate-y-1"
             >
               <div className="relative">
-                <img
+                <Image
                   src={course.bannerImageUrl || ""}
                   alt={course.courseJson.course.name}
                   className="w-full h-40 object-cover"

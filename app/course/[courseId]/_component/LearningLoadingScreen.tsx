@@ -40,11 +40,11 @@ const LearningLoadingScreen = () => {
       technique: "Teaching Method",
     },
   ];
-
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentQuote((prev) => (prev + 1) % learningQuotes.length);
-    }, 3000); // Change quote every 3 seconds
+    }, 3000);
 
     return () => clearInterval(interval);
   }, []);
@@ -122,13 +122,12 @@ const LearningLoadingScreen = () => {
               {currentQuoteData.technique}
             </span>
           </div>
-
           <blockquote
             key={currentQuote}
             className="text-lg text-gray-700 font-medium mb-3 leading-relaxed"
             style={{ animation: "fadeInOut 3s ease-in-out" }}
           >
-            "{currentQuoteData.text}"
+            &ldquo;{currentQuoteData.text}&rdquo;
           </blockquote>
 
           <cite className="text-sm text-gray-500 font-medium">

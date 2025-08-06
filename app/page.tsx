@@ -6,13 +6,10 @@ import {
   Play,
   BookOpen,
   Brain,
-  Zap,
   Target,
-  Users,
   Star,
   ArrowRight,
   Check,
-  Sparkles,
   TrendingUp,
   Clock,
   Award,
@@ -30,9 +27,44 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState, useEffect } from "react";
 
+const testimonials = [
+  {
+    name: "Dr. Sarah Chen",
+    role: "ML Engineer at Google",
+    content:
+      "I've used every learning platform out there. This AI actually understands how concepts build on each other. My team now uses it for onboarding.",
+    rating: 5,
+    courses: "Completed: Advanced Machine Learning, System Design",
+  },
+  {
+    name: "Marcus Rodriguez",
+    role: "Frontend Developer",
+    content:
+      "Went from zero to landing my first dev job in 4 months. The personalized roadmap was like having a senior developer mentor me 24/7.",
+    rating: 5,
+    courses: "Completed: React Mastery, JavaScript Fundamentals",
+  },
+  {
+    name: "Emily Watson",
+    role: "Product Designer",
+    content:
+      "The course structure is incredible. It identified gaps in my knowledge I didn't even know existed and filled them systematically.",
+    rating: 5,
+    courses: "Completed: UX Research, Design Systems",
+  },
+  {
+    name: "James Park",
+    role: "Startup Founder",
+    content:
+      "This platform taught me digital marketing faster than my MBA program. The AI knew exactly what I needed to learn for my specific business model.",
+    rating: 5,
+    courses: "Completed: Growth Marketing, Analytics",
+  },
+];
+
 export default function Home() {
   const [scrollY, setScrollY] = useState(0);
-  const [isVisible, setIsVisible] = useState({});
+  // const [isVisible, setIsVisible] = useState({});
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
   const [hoveredFeature, setHoveredFeature] = useState<number | null>(null);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
@@ -55,7 +87,7 @@ export default function Home() {
       window.removeEventListener("mousemove", handleMouseMove);
       clearInterval(testimonialInterval);
     };
-  }, []);
+  }, [testimonials.length]);
 
   const { isSignedIn } = useUser();
 
@@ -87,41 +119,6 @@ export default function Home() {
       description:
         "Visualize your learning journey with interactive roadmaps that show dependencies, milestones, and alternative paths to mastery.",
       stats: "Visual learning boost",
-    },
-  ];
-
-  const testimonials = [
-    {
-      name: "Dr. Sarah Chen",
-      role: "ML Engineer at Google",
-      content:
-        "I've used every learning platform out there. This AI actually understands how concepts build on each other. My team now uses it for onboarding.",
-      rating: 5,
-      courses: "Completed: Advanced Machine Learning, System Design",
-    },
-    {
-      name: "Marcus Rodriguez",
-      role: "Frontend Developer",
-      content:
-        "Went from zero to landing my first dev job in 4 months. The personalized roadmap was like having a senior developer mentor me 24/7.",
-      rating: 5,
-      courses: "Completed: React Mastery, JavaScript Fundamentals",
-    },
-    {
-      name: "Emily Watson",
-      role: "Product Designer",
-      content:
-        "The course structure is incredible. It identified gaps in my knowledge I didn't even know existed and filled them systematically.",
-      rating: 5,
-      courses: "Completed: UX Research, Design Systems",
-    },
-    {
-      name: "James Park",
-      role: "Startup Founder",
-      content:
-        "This platform taught me digital marketing faster than my MBA program. The AI knew exactly what I needed to learn for my specific business model.",
-      rating: 5,
-      courses: "Completed: Growth Marketing, Analytics",
     },
   ];
 
@@ -423,8 +420,8 @@ export default function Home() {
               From Idea to <span className="text-orange-500">Mastery</span>
             </h2>
             <p className="text-xl text-white/60 max-w-2xl mx-auto">
-              Our AI doesn't just create courses—it creates learning experiences
-              that stick.
+              Our AI doesn&apos;t just create courses—it creates learning
+              experiences that stick.
             </p>
           </div>
 
@@ -438,7 +435,8 @@ export default function Home() {
                 description:
                   "Tell us what you want to learn. Our AI breaks it down into core concepts, identifies prerequisites, and maps out the optimal learning sequence.",
                 detail:
-                  "Uses advanced NLP to understand context and complexity",
+                  // "Uses advanced NLP to understand context and complexity",
+                  "",
               },
               {
                 step: "02",
@@ -506,7 +504,7 @@ export default function Home() {
               Simple, <span className="text-orange-500">Honest</span> Pricing
             </h2>
             <p className="text-xl text-white/60 max-w-2xl mx-auto">
-              Start free, upgrade when you're ready. No hidden fees, no
+              Start free, upgrade when you&apos;re ready. No hidden fees, no
               complicated tiers.
             </p>
           </div>
@@ -601,11 +599,11 @@ export default function Home() {
               <span className="text-orange-500">Real People</span>
             </h2>
             <p className="text-xl text-white/60">
-              These aren't cherry-picked reviews. These are career-changing
+              These aren&apos;t cherry-picked reviews. These are career-changing
               transformations.
             </p>
           </div>
-
+          &apos;
           <div className="relative max-w-4xl mx-auto">
             <div className="bg-black border border-white/10 rounded-3xl p-12 text-center">
               <div className="flex justify-center mb-6">
@@ -620,7 +618,7 @@ export default function Home() {
               </div>
 
               <blockquote className="text-2xl text-white/90 mb-8 leading-relaxed">
-                "{testimonials[currentTestimonial].content}"
+                &ldquo;{testimonials[currentTestimonial].content}&rdquo;
               </blockquote>
 
               <div className="mb-4">
@@ -662,7 +660,7 @@ export default function Home() {
             <span className="text-orange-500">Random Tutorials</span>
           </h2>
           <p className="text-xl text-white/70 mb-12 leading-relaxed">
-            Join over 127,000 learners who've discovered the power of
+            Join over 127,000 learners who&apos;ve discovered the power of
             structured, AI-driven education. Your future self will thank you.
           </p>
 

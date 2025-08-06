@@ -1,9 +1,8 @@
 "use client";
 import AppHeader from "@/app/workspace/_components/AppHeader";
-import { AppSidebar } from "@/app/workspace/_components/AppSidebar";
 import axios from "axios";
 import { useParams } from "next/navigation";
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import CourseSidebar from "./_component/CourseSideBar";
 import { CourseContentArea } from "./_component/CourseContentArea";
 import LearningLoadingScreen from "./_component/LearningLoadingScreen";
@@ -18,11 +17,7 @@ const Course = () => {
     setSidebarOpen(!sidebarOpen);
   };
 
-  useEffect(() => {
-    getCourse();
-  }, [courseId]);
-
-  const getCourse = async () => {
+  const getCourse = useCallback(async () => {
     setLoading(true);
     try {
       const response = await axios.get(
@@ -30,13 +25,16 @@ const Course = () => {
       );
       setCourseInfo(response.data);
       console.log("res:", response);
-      console.log(response.data, "df");
     } catch (error) {
       console.log(error);
     } finally {
       setLoading(false);
     }
-  };
+  }, [courseId]);
+
+  useEffect(() => {
+    getCourse();
+  }, [getCourse]);
 
   const [sidebarOpen, setSidebarOpen] = useState(true);
 

@@ -12,7 +12,7 @@ const AppHeader = ({ hideSidebar = false }: any) => {
       ) : (
         <Link href="/workspace">
           <div className="relative flex items-center space-x-3">
-            {/* <Image src="/logo.svg" width={40} height={40} alt="logo" /> */}
+            <Image src="/logo.svg" width={40} height={40} alt="logo" />
             <span className="text-primary text-2xl font-bold relative">
               Learn
               <span className="relative inline-block">ish</span>

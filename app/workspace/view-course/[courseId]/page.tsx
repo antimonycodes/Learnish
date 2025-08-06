@@ -1,4 +1,3 @@
-import { useParams } from "next/navigation";
 import React from "react";
 import EditCourse from "../../edit-course/[courseId]/page";
 

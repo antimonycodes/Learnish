@@ -12,6 +12,7 @@ import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import AddNewCourseDialog from "@/shared/AddNewCourseDialog";
+import Image from "next/image";
 
 // TypeScript interfaces
 interface CourseJson {
@@ -157,9 +158,9 @@ const Courses = ({ full = false }: any) => {
     }
   };
 
-  const handleCreateCourse = (): void => {
-    router.push("/create-course");
-  };
+  // const handleCreateCourse = (): void => {
+  //   router.push("/create-course");
+  // };
 
   const handleExploreCourses = (): void => {
     router.push("/explore");
@@ -254,7 +255,9 @@ const Courses = ({ full = false }: any) => {
                 className="flex flex-col justify-between  bg-card rounded-xl shadow-sm border border-border overflow-hidden hover:shadow-md transition-all duration-200 hover:-translate-y-1"
               >
                 <div className="relative">
-                  <img
+                  <Image
+                    height={40}
+                    width={40}
                     src={course.bannerImageUrl || ""}
                     alt={course.courseJson.course.name}
                     className="w-full h-40 object-cover"

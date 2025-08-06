@@ -4,14 +4,12 @@ import React, { useEffect, useState } from "react";
 
 import {
   Clock,
-  BookOpen,
   BarChart3,
   User,
   Calendar,
   Tag,
   Loader2,
   Play,
-  Star,
   Download,
   Share2,
   Loader2Icon,
@@ -20,6 +18,7 @@ import { useParams, useRouter } from "next/navigation";
 import axios from "axios";
 import { toast } from "sonner";
 import Link from "next/link";
+import Image from "next/image";
 
 // Topic represents a string array
 type Topic = string;
@@ -67,22 +66,22 @@ const EditCourse = ({ viewCourse = false }: any) => {
   const router = useRouter();
 
   useEffect(() => {
+    const getCourseInfo = async () => {
+      setLoading(true);
+      try {
+        const response = await axios.get(`/api/courses?courseId=${courseId}`);
+        const data = response.data;
+        console.log(data);
+        setCourse(data.courses);
+      } catch (error) {
+        console.log(error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
     getCourseInfo();
   }, []);
-
-  const getCourseInfo = async () => {
-    setLoading(true);
-    try {
-      const response = await axios.get(`/api/courses?courseId=${courseId}`);
-      const data = await response.data;
-      console.log(data);
-      setCourse(data.courses);
-    } catch (error) {
-      console.log(error);
-    } finally {
-      setLoading(false);
-    }
-  };
 
   console.log(course?.cid);
 
@@ -258,7 +257,7 @@ const EditCourse = ({ viewCourse = false }: any) => {
               <div className="order-1 lg:order-2">
                 <div className="bg-white/90 backdrop-blur-sm rounded-2xl sm:rounded-3xl shadow-2xl overflow-hidden border border-white/20">
                   <div className="relative">
-                    <img
+                    <Image
                       src={course.bannerImageUrl}
                       alt={course.courseJson?.course?.name || course.name}
                       className="w-full h-48 sm:h-64 lg:h-80 object-cover"

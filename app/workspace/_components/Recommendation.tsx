@@ -108,7 +108,7 @@ const Recommendation = () => {
                   AI-Powered Recommendations
                 </h3>
                 <p className="text-muted-foreground text-sm mb-4">
-                  We're training our AI to provide personalized course
+                  We&apos;re training our AI to provide personalized course
                   recommendations based on your learning patterns and goals.
                 </p>
                 <div className="flex items-center justify-center gap-2 text-sm font-medium text-chart-2">
