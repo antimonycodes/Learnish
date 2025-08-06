@@ -4,7 +4,7 @@ import { currentUser } from "@clerk/nextjs/server";
 import { eq, sql } from "drizzle-orm";
 import { NextResponse } from "next/server";
 
-export async function GET(req: Request) {
+export async function GET() {
   const user = await currentUser();
   const userEmail = user?.primaryEmailAddress?.emailAddress;
 

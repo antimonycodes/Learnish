@@ -4,26 +4,18 @@ import { currentUser } from "@clerk/nextjs/server";
 import { desc, eq, and, or, exists } from "drizzle-orm";
 import { NextResponse } from "next/server";
 
-// Helper function to serialize data for JSON response
-function serializeData(data: any): any {
-  if (data === null || data === undefined) {
-    return data;
-  }
+function serializeData(data: unknown): unknown {
+  if (data === null || data === undefined) return data;
 
-  if (data instanceof Date) {
-    return data.toISOString();
-  }
-
-  if (typeof data === "bigint") {
-    return data.toString();
-  }
+  if (data instanceof Date) return data.toISOString();
+  if (typeof data === "bigint") return data.toString();
 
   if (Array.isArray(data)) {
-    return data.map(serializeData);
+    return data.map((item) => serializeData(item));
   }
 
   if (typeof data === "object") {
-    const serialized: any = {};
+    const serialized: Record<string, unknown> = {};
     for (const [key, value] of Object.entries(data)) {
       serialized[key] = serializeData(value);
     }

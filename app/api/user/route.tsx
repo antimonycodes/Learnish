@@ -3,7 +3,7 @@ import { usersTable } from "@/config/schema";
 import { eq } from "drizzle-orm";
 import { NextResponse } from "next/server";
 
-export async function POST(req: any) {
+export async function POST(req: Request) {
   const { name, email } = await req.json();
 
   //   check

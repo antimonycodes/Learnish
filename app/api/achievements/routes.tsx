@@ -1,15 +1,24 @@
 import { db } from "@/config/db";
-import { achievementsTable, userAchievementsTable } from "@/config/schema";
+import {
+  Achievement,
+  achievementsTable,
+  userAchievementsTable,
+} from "@/config/schema";
 import { currentUser } from "@clerk/nextjs/server";
 import { and, eq } from "drizzle-orm";
 import { NextResponse } from "next/server";
 
-const user = await currentUser();
-const userEmail = user?.primaryEmailAddress?.emailAddress;
-
+// GET route - Fetch unlocked achievements
 export async function GET() {
-  if (!userEmail) return;
-  NextResponse.json({ error: "You must be logged in to view this page" });
+  const user = await currentUser();
+  const userEmail = user?.primaryEmailAddress?.emailAddress;
+
+  if (!userEmail) {
+    return NextResponse.json(
+      { error: "You must be logged in to view this page" },
+      { status: 401 }
+    );
+  }
 
   const unlocked = await db
     .select({
@@ -24,20 +33,30 @@ export async function GET() {
       achievementsTable,
       eq(achievementsTable.id, userAchievementsTable.achievementId)
     );
-  return Response.json(unlocked);
+
+  return NextResponse.json(unlocked);
 }
 
+// POST route - Unlock an achievement
 export async function POST(req: Request) {
   const { code, userEmail } = await req.json();
-  const achievement: any = await db
+
+  if (!code || !userEmail) {
+    return new Response("Missing code or userEmail", { status: 400 });
+  }
+
+  // Get achievement by code (returns array, take first)
+  const [achievement] = await db
     .select()
     .from(achievementsTable)
     .where(eq(achievementsTable.code, code));
 
-  if (!achievement)
+  if (!achievement) {
     return new Response("Achievement not found", { status: 404 });
+  }
 
-  const exists = await db
+  // Check if already unlocked
+  const existing = await db
     .select()
     .from(userAchievementsTable)
     .where(
@@ -47,8 +66,11 @@ export async function POST(req: Request) {
       )
     );
 
-  if (exists) return new Response("Already unlocked", { status: 200 });
+  if (existing.length > 0) {
+    return new Response("Already unlocked", { status: 200 });
+  }
 
+  // Insert into userAchievementsTable
   await db.insert(userAchievementsTable).values({
     achievementId: achievement.id,
     userEmail,
